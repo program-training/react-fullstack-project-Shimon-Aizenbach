@@ -11,6 +11,7 @@ interface TripDetails {
   destination: string;
   startDate: string;
   endDate: string;
+  description: string;
   image: string;
   price: number;
   activities: string[];
@@ -23,17 +24,19 @@ const TripDetail: React.FC<Props> = (props) => {
       const details = await axios(
         `http://localhost:3000/api/trips/${props.id}`
       );
+      console.log(details.data);
       details && setTripDetails(details.data);
     };
     getDetail();
   }, []);
   return (
     <div>
+      <p>{tripDetails?.description}</p>
       <p>{`Price: ${tripDetails?.price}`}</p>
       <h4>Activities:</h4>
       <ul>
-        {tripDetails?.activities.map((activity) => (
-          <li>{activity}</li>
+        {tripDetails?.activities.map((activity, index) => (
+          <li key={index}>{activity}</li>
         ))}
       </ul>
     </div>

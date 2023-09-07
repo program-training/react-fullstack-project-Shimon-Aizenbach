@@ -15,25 +15,26 @@ interface Trip {
 const Trips: React.FC = () => {
   const [trips, setTrips] = useState<Trip[]>([]);
   useEffect(() => {
-    const getTrip = async () => {
+    const getTrips = async () => {
       const tripsFetch = await axios("http://localhost:3000/api/trips");
+      console.log(tripsFetch.data);  
       tripsFetch && setTrips((prev) => (prev = tripsFetch.data));
     };
-    getTrip();
+    getTrips();
   }, []);
   return (
     <div>
-      <div>
-        {trips.map((trip) => (
-          <TripCard {...trip} />
-        ))}
-      </div>
       <Link to="/">
         <button>Home</button>
       </Link>
       <Link to="/newTripForm">
         <button>New Trip Form</button>
       </Link>
+      <div>
+        {trips.map((trip) => (
+          <TripCard key={trip.id} {...trip} />
+        ))}
+      </div>
     </div>
   );
 };

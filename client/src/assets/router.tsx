@@ -13,7 +13,7 @@ export default function Router() {
           <Route path="/" element={<Home />} />
           <Route path="/trips" element={<Trips />} />
           <Route path="/newTripForm" element={<NewTripForm />} />
-          <Route path="/updateTripForm" element={<UpdateTripForm />} />
+          <Route path="/updateTripForm/:id" element={<UpdateTripForm />} />
           <Route path="/userRegistration" element={<UserRegistration />} />
           <Route path="/userLogin" element={<UserLogin />} />
       </Routes>
